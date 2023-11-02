@@ -1,8 +1,6 @@
 # ConfessIt - An Anonymous Confessions Platform
 ## Overview
 
-(__TODO__: a brief one or two paragraph, high-level description of your project)
-
 Have you ever felt the need to unburden your soul without fear of judgment or exposure? Welcome to ConfessIt, the haven for your deepest secrets and unspoken thoughts. ConfessIt is an anonymous confessions web application that empowers users to share their innermost secrets, candid thoughts, and heartfelt confessions without the fear of revealing their true identity. Within the walls of ConfessIt, users can freely express themselves, explore the confessions of others, and engage with a community that cherishes anonymity at its core.
 
 But ConfessIt goes beyond just a confessions platform. It provides you with a private sanctuary, a digital diary where you can pour out your emotions and thoughts in complete anonymity. This unique 'Diary' section allows you to keep a personal record of your inner journey, unfiltered and free from prying eyes. ConfessIt is not just a confessions platform; it's your secret refuge and a judgment-free diary rolled into one.
@@ -89,41 +87,40 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 ## User Stories or Use Cases
 
-(__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://en.wikipedia.org/wiki/Use_case))
-
-1. as non-registered user, I can register a new account with the site
-2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+1. As an unregistered user, I can register for an account with a unique username and a secure password.
+2. As a registered user, I can log in to my account.
+3. As a user, I can submit a confession, including the content of my confession.
+4. As a user, I can view confessions posted by others in the Confession Feed.
+5. As a user, I can like a confession to show support for the author.
+6. As a user, I can dislike a confession to express my disapproval.
+7. As a user, I can view the details of a confession, including its content, the number of likes, and dislikes.
+8. As a user, I can add personal diary entries to my Diary.
+9. As a user, I can view my personal diary entries in the Diary section.
+10. As a user, I can maintain my anonymity while using the platform, ensuring my identity remains confidential.
 
 ## Research Topics
 
-(__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed)
+* (3 points) Unit Testing with Mocha
+  * Mocha is a JavaScript test framework for writing unit tests.
+  * It will help me in a structured way to verify that individual units of code function correctly.
+* (3 points) Configuration Management with dotenv
+  * dotenv is a Node.js module for managing environment variables and configuration settings.
+  * It will help me simplify the management of environment-specific configuration settings.
+* (5 points) Automated Functional Testing
+  * Selenium is a tools for automated functional testing.
+  * It will help me automate functional testing which will ensure application functionality across different scenarios.
+* (3 points) Integrate user authentication
+  * Passport.js is a popular authentication library for Node.js.
+  * It provides a secure and flexible way to implement user authentication.
 
-* (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
-
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit)
+14 points total out of 10 required points
 
 
 ## [Link to Initial Main Project File](app.mjs) 
 
-(__TODO__: create a skeleton Express application with a package.json, app.mjs, views folder, etc. ... and link to your initial app.mjs)
-
 ## Annotations / References Used
 
-(__TODO__: list any tutorials/references/etc. that you've based your code off of)
-
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
-
+* Mocha - [https://mochajs.org/]- Reference for Mocha, the JavaScript test framework used for unit testing.
+* dotenv - [https://www.npmjs.com/package/dotenv] - Reference for dotenv, the module used for configuration management.
+* Selenium - [https://www.selenium.dev/] - Reference for Selenium, the automated functional testing tool.
+* Passport.js - [https://www.passportjs.org/docs/] - Reference for Passport.js, the library used for user authentication in Node.js applications.
