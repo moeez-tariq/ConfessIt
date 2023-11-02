@@ -65,17 +65,39 @@ Each confession includes:
 
 ## Wireframes
 
-(__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.)
+/ - main page when user is not logged in
 
-/list/create - page for creating a new shopping list
+![list create](documentation/IMG_7054.heic)
 
-![list create](documentation/list-create.png)
-
-/list - page for showing all shopping lists
+/signin - page for when user is trying to sign in
 
 ![list](documentation/list.png)
 
-/list/slug - page for showing specific shopping list
+/signup - page for when user is trying to sign up
+
+![list](documentation/list-slug.png)
+
+/home - page for home when user is signed in
+
+![list](documentation/list.png)
+
+/confessions - page for all the public confessions
+
+![list](documentation/list-slug.png)
+
+/addConfession - page for when user is trying to add a confessions
+
+![list](documentation/list-slug.png)
+
+/diary - page for when user is trying to access their diary
+
+![list](documentation/list.png)
+
+/addToDiary - page for when user is trying to add another log to their diary
+
+![list](documentation/list-slug.png)
+
+/feedback - page for when user is giving feedback
 
 ![list](documentation/list-slug.png)
 
