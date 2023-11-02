@@ -64,7 +64,7 @@ Each confession includes:
 ## [Link to Commented First Draft Schema](db.mjs) 
 
 ## Wireframes
-
+### Note: For all wireframes after login form, the header and footer will be the same as the home page (not shown in the wireframes excluding homepage)
 / - main page when user is not logged in
 
 ![list create](documentation/IMG_7054.png)
@@ -116,6 +116,7 @@ Each confession includes:
 8. As a user, I can add personal diary entries to my Diary.
 9. As a user, I can view my personal diary entries in the Diary section.
 10. As a user, I can maintain my anonymity while using the platform, ensuring my identity remains confidential.
+11. As a user, I can provide feedback to the developers of the platform.
 
 ## Research Topics
 
