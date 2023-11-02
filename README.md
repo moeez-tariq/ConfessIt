@@ -1,57 +1,69 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
-
-(__TODO__: your project name)
-
-# Shoppy Shoperson 
-
+# ConfessIt - An Anonymous Confessions Platform
 ## Overview
 
 (__TODO__: a brief one or two paragraph, high-level description of your project)
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
+Have you ever felt the need to unburden your soul without fear of judgment or exposure? Welcome to ConfessIt, the haven for your deepest secrets and unspoken thoughts. ConfessIt is an anonymous confessions web application that empowers users to share their innermost secrets, candid thoughts, and heartfelt confessions without the fear of revealing their true identity. Within the walls of ConfessIt, users can freely express themselves, explore the confessions of others, and engage with a community that cherishes anonymity at its core.
 
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
-
-
+But ConfessIt goes beyond just a confessions platform. It provides you with a private sanctuary, a digital diary where you can pour out your emotions and thoughts in complete anonymity. This unique 'Diary' section allows you to keep a personal record of your inner journey, unfiltered and free from prying eyes. ConfessIt is not just a confessions platform; it's your secret refuge and a judgment-free diary rolled into one.
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other) 
+The ConfessIt application will have three main data entities: Users, Diaries, and Confessions, each with its own set of attributes.
 
-The application will store Users, Lists and Items
+1. Users:
 
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
-
-(__TODO__: sample documents)
-
-An Example User:
+Users are the individuals who create accounts and interact with the platform.
+Each user has the following attributes:
+* username: A unique username chosen by the user while signup.
+* hash: A password hash to secure the user's account.
+* diary: A reference to the user's personal diary document.
+* confessions: An array of references to Confession documents posted by the user.
 
 ```javascript
 {
-  username: "shannonshopper",
+  username: "anonymousUser123",
   hash: // a password hash,
-  lists: // an array of references to List documents
+  diary: // a reference to the user's Diary document,
+  confessions: // an array of references to Confession documents
 }
 ```
 
-An Example List with Embedded Items:
+2. Diary:
+
+The Diary entity represents the user's private space to record personal thoughts and reflections.
+Each diary document includes:
+* user: A reference to the User who owns the diary.
+* entries: An array of diary entries, each containing a timestamp and the content of the entry.
 
 ```javascript
 {
-  user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
-  createdAt: // timestamp
+  user: // a reference to the User document,
+  entries: [
+    { content: "Today, I felt...", timestamp: /* timestamp */},
+    { content: "A secret I've been carrying...", timestamp: /* timestamp */ },
+  ]
 }
 ```
 
+3. Confessions:
 
+Confessions represent the public, anonymous disclosures made by users.
+Each confession includes:
+* user: A reference to the User who posted the confession.
+* content: The text content of the confession.
+* likes: The number of users who liked the confession.
+* dislikes: The number of users who disliked the confession.
+
+```javascript
+{
+  user: // a reference to the User document,
+  content: "I did something I'm not proud of...",
+  timestamp: // timestamp,
+  likes: // number of users who liked the confession,
+  dislikes: // number of users who disliked the confession
+}
+```
 ## [Link to Commented First Draft Schema](db.mjs) 
-
-(__TODO__: create a first draft of your Schemas in db.mjs and link to it)
 
 ## Wireframes
 
