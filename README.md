@@ -80,7 +80,7 @@ Each confession includes:
 ![list](documentation/list-slug.png)
 
 ## Site map
-## [Link to Site Map](documentation/site-map.png)
+## [Link to Site Map](documentation/site_map.png)
 
 ## User Stories or Use Cases
 
