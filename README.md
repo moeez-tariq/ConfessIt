@@ -19,7 +19,7 @@ Each user has the following attributes:
 
 ```javascript
 {
-  username: "anonymousUser123",
+  username: "abc123",
   hash: // a password hash,
   diary: // a reference to the user's Diary document,
   confessions: // an array of references to Confession documents
@@ -67,39 +67,39 @@ Each confession includes:
 
 / - main page when user is not logged in
 
-![list create](documentation/IMG_7054.heic)
+![list create](documentation/IMG_7054.png)
 
 /signin - page for when user is trying to sign in
 
-![list](documentation/list.png)
+![list](documentation/IMG_7055.png)
 
 /signup - page for when user is trying to sign up
 
-![list](documentation/list-slug.png)
+![list](documentation/IMG_7056.png)
 
 /home - page for home when user is signed in
 
-![list](documentation/list.png)
+![list](documentation/IMG_7057.png)
 
 /confessions - page for all the public confessions
 
-![list](documentation/list-slug.png)
+![list](documentation/IMG_7059.png)
 
 /addConfession - page for when user is trying to add a confessions
 
-![list](documentation/list-slug.png)
+![list](documentation/IMG_7058.png)
 
 /diary - page for when user is trying to access their diary
 
-![list](documentation/list.png)
+![list](documentation/IMG_7060.png)
 
 /addToDiary - page for when user is trying to add another log to their diary
 
-![list](documentation/list-slug.png)
+![list](documentation/IMG_7061.png)
 
 /feedback - page for when user is giving feedback
 
-![list](documentation/list-slug.png)
+![list](documentation/IMG_7063.png)
 
 ## Site map
 ## [Link to Site Map](documentation/site_map.png)
