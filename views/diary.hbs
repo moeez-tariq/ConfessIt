@@ -1,0 +1,18 @@
+<header>
+        <h1>My Diary</h1>
+    </header>
+    <main>
+        {{#if diary.entries.length}}
+            <ul>
+                {{#each diary.entries}}
+                    <li>{{this.content}}</li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <p>Your diary is empty. Start adding entries!</p>
+        {{/if}}
+    </main>
+    <footer>
+        <a href="/addDay">Add Entry</a>
+        <a href="/home">Back to Home</a>
+    </footer>

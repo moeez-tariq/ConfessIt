@@ -1,0 +1,14 @@
+<h2>Confessions</h2>
+{{#each confessions}}
+<div class="confession">
+    <p>{{this.content}}</p>
+    <div class="actions">
+        <button>Like</button>
+        <button>Dislike</button>
+    </div>
+</div>
+{{/each}}
+<footer>
+        <a href="/addConfession">Add Confession</a>
+        <a href="/home">Back to Home</a>
+    </footer>

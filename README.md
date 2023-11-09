@@ -97,6 +97,7 @@ Each confession includes:
 
 ![list](documentation/IMG_7061.png)
 
+Note: This page/form is optional and will be implemented if time permits
 /feedback - page for when user is giving feedback
 
 ![list](documentation/IMG_7063.png)
@@ -116,7 +117,7 @@ Each confession includes:
 8. As a user, I can add personal diary entries to my Diary.
 9. As a user, I can view my personal diary entries in the Diary section.
 10. As a user, I can maintain my anonymity while using the platform, ensuring my identity remains confidential.
-11. As a user, I can provide feedback to the developers of the platform.
+11. As a user, I can provide feedback to the developers of the platform. (Optional)
 
 ## Research Topics
 

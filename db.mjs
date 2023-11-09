@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // User Schema
 const UserSchema = new mongoose.Schema({
@@ -70,4 +70,7 @@ const ConfessionSchema = new mongoose.Schema({
 
 mongoose.model('User', UserSchema);
 mongoose.model('Diary', DiarySchema);
+mongoose.model('DiaryEntry', DiaryEntrySchema);
 mongoose.model('Confession', ConfessionSchema);
+
+mongoose.connect(process.env.DSN || 'mongodb://localhost/finalProject')
