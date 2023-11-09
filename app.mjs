@@ -1,6 +1,6 @@
 import './config.mjs';
 import './db.mjs';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 
