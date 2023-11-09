@@ -186,3 +186,6 @@ app.post('/addDay', isAuthenticated, async (req, res) => {
 });
 app.listen(process.env.PORT || 3000);
 //added a comment 2
+
+//added a comment
+
