@@ -184,10 +184,5 @@ app.post('/addDay', isAuthenticated, async (req, res) => {
     await diary.save();
     res.redirect('/diary');
 });
-app.listen(process.env.PORT || 3000);
-//added a comment 2
-//added a comment
-
-const a = 5;
-const b = 10;
+app.listen(process.env.PORT || 3000); //will remove 3000 later in the project
 
