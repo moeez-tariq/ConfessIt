@@ -7,6 +7,10 @@ const UserSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
   hash: {
     type: String,
     required: true,
@@ -19,6 +23,18 @@ const UserSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Confession',
+    },
+  ],
+  likedConfessions: [
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Confession',
+    },
+  ],
+  dislikedConfessions: [
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Confession',
     },
   ],
 });
@@ -72,5 +88,6 @@ mongoose.model('User', UserSchema);
 mongoose.model('Diary', DiarySchema);
 mongoose.model('DiaryEntry', DiaryEntrySchema);
 mongoose.model('Confession', ConfessionSchema);
-// mongoose.connect(process.env.DSN || 'mongodb://localhost/finalProject');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://mt4610:ekAfL3gZ@class-mongodb.cims.nyu.edu/mt4610') //will eventually remove the second part towards the end of the project
+
+// mongoose.connect(process.env.DSN || 'mongodb://localhost/finalProjectFinal');
+mongoose.connect(process.env.MONGODB_URI)

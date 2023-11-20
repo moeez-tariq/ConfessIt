@@ -1,18 +1,65 @@
-<header>
-        <h1>My Diary</h1>
-    </header>
-    <main>
-        {{#if diary.entries.length}}
-            <ul>
-                {{#each diary.entries}}
-                    <li>{{this.content}}</li>
-                {{/each}}
+<div class="hero_area2">
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="images/hero-bg2.png" alt="">
+      </div>
+    </div>
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="/home">
+            <span>
+              ConfessIT
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" id="home" href="/home">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="confessions" href="/confessions">Confessions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="addConfession" href="/addConfession">Add Confession</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="diary" href="/diary">Diary</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="addDay" href="/addDay">Add to Diary</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"> <i class="fa fa-user" aria-hidden="true"></i> Login</a>
+              </li>
             </ul>
-        {{else}}
-            <p>Your diary is empty. Start adding entries!</p>
-        {{/if}}
-    </main>
-    <footer>
-        <a href="/addDay">Add Entry</a>
-        <a href="/home">Back to Home</a>
-    </footer>
+          </div>
+        </nav>
+      </div>
+    </header>
+</div> 
+
+<div class="container2">
+    <div class="heading_container heading_center psudo_white_primary mb_45"> 
+    <h2>
+        DEAR <span>DIARY...</span>
+    </h2>
+    </div>
+</div>
+{{#if diary.entries.length}}
+    {{#each diary.entries}}
+    <div class="confession-box">
+        <div class="confession">
+        <p>{{this.content}}</p>
+        <p>{{this.timestamp}}</p>
+        </div>
+    </div>
+    {{/each}}
+{{else}}
+    <p class="empty-diary-message">YOUR DIARY IS EMPTY. START ADDING ENTRIES!</p>
+{{/if}}

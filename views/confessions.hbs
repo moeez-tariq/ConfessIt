@@ -1,14 +1,73 @@
-<h2>Confessions</h2>
-{{#each confessions}}
-<div class="confession">
-    <p>{{this.content}}</p>
-    <div class="actions">
-        <button>Like</button>
-        <button>Dislike</button>
+<div class="hero_area2">
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="images/hero-bg2.png" alt="">
+      </div>
+    </div>
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="/home">
+            <span>
+              ConfessIT
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" id="home" href="/home">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="confessions" href="/confessions">Confessions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="addConfession" href="/addConfession">Add Confession</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="diary" href="/diary">Diary</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="addDay" href="/addDay">Add to Diary</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"> <i class="fa fa-user" aria-hidden="true"></i> Login</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+</div> 
+
+<div class="container2">
+    <div class="heading_container heading_center psudo_white_primary mb_45"> 
+    <h2>
+        PUBLIC <span>CONFESSIONS</span>
+    </h2>
     </div>
 </div>
+
+{{#each confessions}}
+  <div class="confession-box">
+    <div class="confession">
+      <p>{{this.content}}</p>
+      <div class="actions">
+        <form action="/likeConfession/{{this._id}}" method="post">
+          <button class="like-btn" type="submit">👍 Like</button>
+        </form>
+        <span class="like-count">{{this.likes}}</span>
+        <form action="/dislikeConfession/{{this._id}}" method="post">
+          <button class="dislike-btn" type="submit">👎 Dislike</button>
+        </form>
+        <span class="dislike-count">{{this.dislikes}}</span>
+      </div>
+    </div>
+  </div>
 {{/each}}
-<footer>
-        <a href="/addConfession">Add Confession</a>
-        <a href="/home">Back to Home</a>
-    </footer>
+
+

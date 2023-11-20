@@ -39,7 +39,7 @@ app.get('/signup', (req, res) => {
 });
   
 app.post('/signup', async (req, res) => {
-    const { username, password } = req.body;
+    const { username, name, password } = req.body;
     try {
         const existingUser = await User.findOne({ username });
         if (existingUser) {
@@ -50,6 +50,7 @@ app.post('/signup', async (req, res) => {
 
         const newUser = new User({
         username,
+        name,
         hash: hashedPassword,
         diary: null,
         confessions: [],
@@ -91,8 +92,6 @@ passport.use(new LocalStrategy(
         if (!user) {
           return done(null, false, { message: 'User not found' });
         }
-  
-        // Compare the provided password with the stored hashed password
         const passwordMatch = await bcrypt.compare(password, user.hash);
   
         if (passwordMatch) {
@@ -107,7 +106,7 @@ passport.use(new LocalStrategy(
   ));
   
   passport.serializeUser((user, done) => {
-    done(null, user.id); // Store user id in the session
+    done(null, user.id);
   });
   
   passport.deserializeUser(async (id, done) => {
@@ -184,5 +183,85 @@ app.post('/addDay', isAuthenticated, async (req, res) => {
     await diary.save();
     res.redirect('/diary');
 });
-app.listen(process.env.PORT || 3000); //will remove 3000 later in the project
 
+app.post('/likeConfession/:id', isAuthenticated, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const confessionId = req.params.id;
+
+    const user = await User.findById(userId);
+    if (user.dislikedConfessions.includes(confessionId)) {
+      const confession = await Confession.findById(confessionId);
+      confession.likes += 1;
+      confession.dislikes -= 1;
+
+      await confession.save();
+      user.dislikedConfessions = user.dislikedConfessions.filter(id => id.toString() !== confessionId);
+      user.likedConfessions.push(confessionId);
+
+      await user.save();
+
+      return res.redirect('/confessions');
+    }
+
+    if (!user.likedConfessions.includes(confessionId)) {
+      const confession = await Confession.findById(confessionId);
+
+      confession.likes += 1;
+      await confession.save();
+      user.likedConfessions.push(confessionId);
+      await user.save();
+
+      return res.redirect('/confessions');
+    }
+
+    return res.redirect('/confessions');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+app.post('/dislikeConfession/:id', isAuthenticated, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const confessionId = req.params.id;
+
+    const user = await User.findById(userId);
+
+    if (user.likedConfessions.includes(confessionId)) {
+      const confession = await Confession.findById(confessionId);
+      confession.likes -= 1;
+      confession.dislikes += 1;
+
+      await confession.save();
+
+      user.likedConfessions = user.likedConfessions.filter(id => id.toString() !== confessionId);
+      user.dislikedConfessions.push(confessionId);
+
+      await user.save();
+
+      return res.redirect('/confessions');
+    }
+
+    if (!user.dislikedConfessions.includes(confessionId)) {
+      const confession = await Confession.findById(confessionId);
+
+      confession.dislikes += 1;
+
+      await confession.save();
+      user.dislikedConfessions.push(confessionId);
+      await user.save();
+      return res.redirect('/confessions');
+    }
+
+    return res.redirect('/confessions');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+app.listen(process.env.PORT);
