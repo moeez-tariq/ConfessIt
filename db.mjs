@@ -89,5 +89,5 @@ mongoose.model('Diary', DiarySchema);
 mongoose.model('DiaryEntry', DiaryEntrySchema);
 mongoose.model('Confession', ConfessionSchema);
 
-mongoose.connect(process.env.DSN || 'mongodb://localhost/finalProjectFinal');
-// mongoose.connect(process.env.MONGODB_URI)
+// mongoose.connect(process.env.DSN || 'mongodb://localhost/finalProjectFinal');
+mongoose.connect(process.env.MONGODB_URI)
