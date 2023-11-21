@@ -105,8 +105,8 @@ async function runScript() {
     
         await openInitialPage(driver);
         await waitAndNavigateToSignup(driver, globalDuration);
-        await fillAndSubmitSignupForm(driver, 'User_'+name, name, '123', globalDuration);
-        await fillAndSubmitLoginForm(driver, 'User_'+name, '123', globalDuration);
+        await fillAndSubmitSignupForm(driver, 'User_'+name, name, 'Testpassword123', globalDuration);
+        await fillAndSubmitLoginForm(driver, 'User_'+name, 'Testpassword123', globalDuration);
         await navigateToAddConfessionTab(driver, globalDuration);
         await fillAndSubmitConfessionForm(driver, 'Hello World', globalDuration);
         await likeConfession(driver, globalDuration);
