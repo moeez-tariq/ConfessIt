@@ -49,6 +49,9 @@
             <h3>
              ITS OKAY TO LET IT ALL OUT - SIGN UP!
             </h3>
+            {{#if error}}
+              <p style="color: red;">{{error}}</p>
+            {{/if}}
             <form action="/signup" method="POST">
             <label for="username">Username:</label>
             <input type="text" name="username" required>

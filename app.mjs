@@ -3,6 +3,7 @@ import './db.mjs';
 import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
+import flash from 'connect-flash';
 
 import express from 'express'
 import path from 'path'
@@ -25,6 +26,7 @@ const sessionOptions = {
       saveUninitialized: true
 };
 app.use(session(sessionOptions));
+app.use(flash());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -39,45 +41,50 @@ app.get('/signup', (req, res) => {
 });
   
 app.post('/signup', async (req, res) => {
-    const { username, name, password } = req.body;
-    try {
-        const existingUser = await User.findOne({ username });
-        if (existingUser) {
-          return res.redirect('/signup?error=Username%20is%20already%20taken');
-        }
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
+  const { username, name, password } = req.body;
 
-        const newUser = new User({
-        username,
-        name,
-        hash: hashedPassword,
-        diary: null,
-        confessions: [],
-        });
+  const MIN_PASSWORD_LENGTH = 8;
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasNumber = /\d/.test(password);
 
-        await newUser.save();
+  try {
+      const existingUser = await User.findOne({ username });
+      if (existingUser) {
+          return res.render('signup', { error: 'Username is already taken. Please try again!' });
+      }
 
-        const newDiary = new Diary({
-        user: newUser.id,
-        entries: [],
-        });
+      if (password.length < MIN_PASSWORD_LENGTH || !hasUpperCase || !hasNumber) {
+        return res.render('signup', { error: 'Invalid Password Format. Password must be at least 8 characters long and must contain at least 1 uppercase and 1 digit.' });
+    }
 
-        await newDiary.save();
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        newUser.diary = newDiary.id;
-        await newUser.save();
+      const newUser = new User({
+          username,
+          name,
+          hash: hashedPassword,
+          diary: null,
+          confessions: [],
+      });
 
+      await newUser.save();
 
-        res.redirect('/signin');
-    } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
+      const newDiary = new Diary({
+          user: newUser.id,
+          entries: [],
+      });
+
+      await newDiary.save();
+
+      newUser.diary = newDiary.id;
+      await newUser.save();
+
+      res.redirect('/signin');
+  } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
   }
-});
-  
-app.get('/signin', (req, res) => {
-    res.render('signin');
 });
 
 passport.use(new LocalStrategy(
@@ -132,9 +139,19 @@ const isAuthenticated = (req, res, next) => {
 
   
 app.post('/signin', passport.authenticate('local', {
-    successRedirect: '/home',
-    failureRedirect: '/signin'
+  successRedirect: '/home',
+  failureRedirect: '/signin',
+  failureFlash: true
 }));
+
+app.get('/signin', (req, res) => {
+  const messages = req.flash();
+  if (messages.error !== undefined) {
+    console.log('here');
+    messages.error = messages.error + '. Enter valid username and password.';
+  }
+  res.render('signin', { messages });
+});
 
 app.get('/home', isAuthenticated, (req, res) => {
     res.render('home');
