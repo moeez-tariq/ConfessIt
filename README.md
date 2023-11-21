@@ -121,9 +121,9 @@ Note: This page/form is optional and will be implemented if time permits
 
 ## Research Topics
 
-* (3 points) Unit Testing with Mocha
-  * Mocha is a JavaScript test framework for writing unit tests.
-  * It will help me in a structured way to verify that individual units of code function correctly.
+* (2 points) Bootstrap for UI Styling
+    * Bootstrap is a front-end framework for designing responsive and visually appealing user interfaces.
+    * Integrating Bootstrap will enhance the UI styling of the application.
 * (3 points) Configuration Management with dotenv
   * dotenv is a Node.js module for managing environment variables and configuration settings.
   * It will help me simplify the management of environment-specific configuration settings.
@@ -134,14 +134,14 @@ Note: This page/form is optional and will be implemented if time permits
   * Passport.js is a popular authentication library for Node.js.
   * It provides a secure and flexible way to implement user authentication.
 
-14 points total out of 10 required points
+13 points total out of 10 required points
 
 
 ## [Link to Initial Main Project File](app.mjs) 
 
 ## Annotations / References Used
 
-* Mocha - [https://mochajs.org/]- Reference for Mocha, the JavaScript test framework used for unit testing.
+* Bootstrap - [https://getbootstrap.com/] - Reference for Bootstrap, a front-end framework for UI styling.
 * dotenv - [https://www.npmjs.com/package/dotenv] - Reference for dotenv, the module used for configuration management.
 * Selenium - [https://www.selenium.dev/] - Reference for Selenium, the automated functional testing tool.
 * Passport.js - [https://www.passportjs.org/docs/] - Reference for Passport.js, the library used for user authentication in Node.js applications.
