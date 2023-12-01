@@ -37,6 +37,12 @@ const UserSchema = new mongoose.Schema({
         ref: 'Confession',
     },
   ],
+  feedbacks: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Feedback',
+    },
+  ],
 });
 
 // Diary Entry Schema
@@ -84,10 +90,26 @@ const ConfessionSchema = new mongoose.Schema({
   },
 });
 
+const FeedbackSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 mongoose.model('User', UserSchema);
 mongoose.model('Diary', DiarySchema);
 mongoose.model('DiaryEntry', DiaryEntrySchema);
 mongoose.model('Confession', ConfessionSchema);
+mongoose.model('Feedback', FeedbackSchema);
 
-// mongoose.connect(process.env.DSN || 'mongodb://localhost/finalProjectFinal');
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.DSN || 'mongodb://localhost/finalProjectFinal');
+// mongoose.connect(process.env.MONGODB_URI)

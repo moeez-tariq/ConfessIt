@@ -50,27 +50,50 @@
 <div class="container2">
     <div class="heading_container heading_center psudo_white_primary mb_45"> 
     <h2>
-        PUBLIC <span>CONFESSIONS</span>
+        HELP US <span>IMPROVE</span>
     </h2>
     </div>
 </div>
 
-{{#each confessions}}
-  <div class="confession-box">
-    <div class="confession">
-      <p>{{this.content}}</p>
-      <div class="actions">
-        <form action="/likeConfession/{{this._id}}" method="post">
-          <button class="like-btn" type="submit">👍 Like</button>
-        </form>
-        <span class="like-count">{{this.likes}}</span>
-        <form action="/dislikeConfession/{{this._id}}" method="post">
-          <button class="dislike-btn" type="submit">👎 Dislike</button>
-        </form>
-        <span class="dislike-count">{{this.dislikes}}</span>
-      </div>
+<section class="slider_section2">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+        <div class="container ">
+                <div class="detail-box">
+                <div class="feedback-form-container">
+                    <h2>We Care About Your Experience</h2>
+                    <form action="/feedback" method="POST">
+                        <label for="content">Feedback:</label>
+                        <textarea name="content" required></textarea>
+                        <button type="submit" class="btn btn1">Add Feedback</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
     </div>
-  </div>
-{{/each}}
+    </div> 
+</section>
 
+<div class="container2">
+    <div class="heading_container heading_center psudo_white_primary mb_45"> 
+    <h2>
+        PUBLIC <span>FEEDBACK</span>
+    </h2>
+    </div>
+</div>
 
+{{#if allFeedbacks.length}}
+    {{#each allFeedbacks}}
+    <div class="confession-box">
+        <div class="confession">
+        <p>{{this.content}}</p>
+        <p>{{this.timestamp}}</p>
+        </div>
+    </div>
+    {{/each}}
+{{else}}
+    <p class="empty-diary-message">NO FEEDBACKS YET. LET US KNOW WHAT YOU THINK!</p>
+{{/if}}

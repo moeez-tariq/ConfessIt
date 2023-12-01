@@ -19,6 +19,7 @@ const User = mongoose.model('User');
 const Diary = mongoose.model('Diary');
 const DiaryEntry = mongoose.model('DiaryEntry');
 const Confession = mongoose.model('Confession');
+const Feedback = mongoose.model('Feedback');
 
 const sessionOptions = {
     secret: process.env.SESSION_SECRET || 'secret cookie',
@@ -162,7 +163,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/confessions', isAuthenticated, async (req, res) => {
-    const confessions = await Confession.find().populate('user');
+    const confessions = await Confession.find().sort({ timestamp: -1 }).populate('user');
     res.render('confessions', { confessions });
 });
 
@@ -182,6 +183,7 @@ app.post('/addConfession', isAuthenticated, async (req, res) => {
 
 app.get('/diary', isAuthenticated, async (req, res) => {
     const diary = await Diary.findOne({ user: req.user.id }).populate('entries');
+    diary.entries.sort((a, b) => b.timestamp - a.timestamp);
     res.render('diary', { diary });
 });
 
@@ -278,6 +280,48 @@ app.post('/dislikeConfession/:id', isAuthenticated, async (req, res) => {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
+});
+
+app.get('/feedback', isAuthenticated, async (req, res) => {
+  try {
+    const allFeedbacks = await Feedback.find().sort({ timestamp: -1 });
+    res.render('feedback', { allFeedbacks });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.post('/feedback', isAuthenticated, async (req, res) => {
+  const { content } = req.body;
+
+  try {
+    const newFeedback = new Feedback({
+      user: req.user.id,
+      content,
+    });
+
+    await newFeedback.save();
+
+    const user = await User.findById(req.user.id);
+    user.feedbacks.push(newFeedback.id);
+    await user.save();
+
+    res.redirect('/feedback');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/logout', (req, res) => {
+  req.logout(err => {
+    if (err) {
+      console.error(err);
+      return res.redirect('/');
+    }
+    res.redirect('/');
+  });
 });
 
 

@@ -35,7 +35,10 @@
                 <a class="nav-link" id="addDay" href="/addDay">Add to Diary</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"> <i class="fa fa-user" aria-hidden="true"></i> Login</a>
+                <a class="nav-link" id="feedback" href="/feedback">Feedback</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="logout" href="/logout"> <i class="fa fa-user" aria-hidden="true"></i>  Logout</a>
               </li>
             </ul>
           </div>
@@ -51,11 +54,11 @@
         <div class="container ">
                 <div class="detail-box">
                 <div class="confession-form-container">
-                    <h2>Add Confession</h2>
+                    <h2>Public Confession</h2>
                     <form action="/addConfession" method="POST">
                         <label for="content">Confession:</label>
                         <textarea name="content" required></textarea>
-                        <button type="submit" class="btn btn1">Add Confession</button>
+                        <button type="submit" class="btn btn1">Confess</button>
                     </form>
                 </div>
                 </div>
