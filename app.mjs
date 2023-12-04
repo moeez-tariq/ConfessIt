@@ -11,6 +11,8 @@ import { fileURLToPath } from 'url';
 import mongoose from 'mongoose';
 import hbs from 'hbs';
 
+import { DiaryManager, ConfessionManager } from './classes.mjs';
+
 import session from 'express-session';
 
 const app = express();
@@ -148,7 +150,6 @@ app.post('/signin', passport.authenticate('local', {
 app.get('/signin', (req, res) => {
   const messages = req.flash();
   if (messages.error !== undefined) {
-    console.log('here');
     messages.error = messages.error + '. Enter valid username and password.';
   }
   res.render('signin', { messages });
@@ -163,8 +164,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/confessions', isAuthenticated, async (req, res) => {
-    const confessions = await Confession.find().sort({ timestamp: -1 }).populate('user');
-    res.render('confessions', { confessions });
+  const confessionManager = new ConfessionManager('user');
+  const confessions = await confessionManager.getAllConfessions();
+  res.render('confessions', { confessions });
 });
 
 app.get('/addConfession', isAuthenticated, (req, res) => {
@@ -173,17 +175,15 @@ app.get('/addConfession', isAuthenticated, (req, res) => {
 
 app.post('/addConfession', isAuthenticated, async (req, res) => {
     const { content } = req.body;
-    const confession = new Confession({
-        user: req.user.id,
-        content,
-    });
-    await confession.save();
+    const confessionManager = new ConfessionManager('user');
+    await confessionManager.addConfession(req.user.id, content);
     res.redirect('/confessions');
 });
 
 app.get('/diary', isAuthenticated, async (req, res) => {
     const diary = await Diary.findOne({ user: req.user.id }).populate('entries');
-    diary.entries.sort((a, b) => b.timestamp - a.timestamp);
+    const diaryManager = new DiaryManager(diary);
+    const sortedEntries = diaryManager.getSortedEntries();
     res.render('diary', { diary });
 });
 
@@ -193,13 +193,9 @@ app.get('/addDay', isAuthenticated, (req, res) => {
 
 app.post('/addDay', isAuthenticated, async (req, res) => {
     const { content } = req.body;
-    const newEntry = new DiaryEntry({
-        content,
-    });
-    await newEntry.save();
     const diary = await Diary.findOne({ user: req.user.id });
-    diary.entries.push(newEntry);
-    await diary.save();
+    const diaryManager = new DiaryManager(diary);
+    await diaryManager.addEntry(content);
     res.redirect('/diary');
 });
 
@@ -209,30 +205,8 @@ app.post('/likeConfession/:id', isAuthenticated, async (req, res) => {
     const confessionId = req.params.id;
 
     const user = await User.findById(userId);
-    if (user.dislikedConfessions.includes(confessionId)) {
-      const confession = await Confession.findById(confessionId);
-      confession.likes += 1;
-      confession.dislikes -= 1;
-
-      await confession.save();
-      user.dislikedConfessions = user.dislikedConfessions.filter(id => id.toString() !== confessionId);
-      user.likedConfessions.push(confessionId);
-
-      await user.save();
-
-      return res.redirect('/confessions');
-    }
-
-    if (!user.likedConfessions.includes(confessionId)) {
-      const confession = await Confession.findById(confessionId);
-
-      confession.likes += 1;
-      await confession.save();
-      user.likedConfessions.push(confessionId);
-      await user.save();
-
-      return res.redirect('/confessions');
-    }
+    const confessionManager = new ConfessionManager('user');
+    const liked = await confessionManager.likeConfession(user, confessionId);
 
     return res.redirect('/confessions');
   } catch (error) {
@@ -248,33 +222,9 @@ app.post('/dislikeConfession/:id', isAuthenticated, async (req, res) => {
     const confessionId = req.params.id;
 
     const user = await User.findById(userId);
-
-    if (user.likedConfessions.includes(confessionId)) {
-      const confession = await Confession.findById(confessionId);
-      confession.likes -= 1;
-      confession.dislikes += 1;
-
-      await confession.save();
-
-      user.likedConfessions = user.likedConfessions.filter(id => id.toString() !== confessionId);
-      user.dislikedConfessions.push(confessionId);
-
-      await user.save();
-
-      return res.redirect('/confessions');
-    }
-
-    if (!user.dislikedConfessions.includes(confessionId)) {
-      const confession = await Confession.findById(confessionId);
-
-      confession.dislikes += 1;
-
-      await confession.save();
-      user.dislikedConfessions.push(confessionId);
-      await user.save();
-      return res.redirect('/confessions');
-    }
-
+    const confessionManager = new ConfessionManager('user');
+    const disliked = await confessionManager.dislikeConfession(user, confessionId);
+    
     return res.redirect('/confessions');
   } catch (error) {
     console.error(error);
@@ -323,6 +273,5 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
   });
 });
-
 
 app.listen(process.env.PORT);
