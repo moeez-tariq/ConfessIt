@@ -24,7 +24,7 @@ const Confession = mongoose.model('Confession');
 const Feedback = mongoose.model('Feedback');
 
 const sessionOptions = {
-    secret: process.env.SESSION_SECRET || 'secret cookie',
+    secret: process.env.SESSION_SECRET,
     resave: true,
       saveUninitialized: true
 };
@@ -44,8 +44,8 @@ app.get('/signup', (req, res) => {
 });
   
 app.post('/signup', async (req, res) => {
-  const { username, name, password } = req.body;
-
+  let { username, name, password } = req.body;
+  username = username.toLowerCase();
   const MIN_PASSWORD_LENGTH = 8;
   const hasUpperCase = /[A-Z]/.test(password);
   const hasNumber = /\d/.test(password);
@@ -60,7 +60,7 @@ app.post('/signup', async (req, res) => {
         return res.render('signup', { error: 'Invalid Password Format. Password must be at least 8 characters long and must contain at least 1 uppercase and 1 digit.' });
     }
 
-      const saltRounds = 10;
+      const saltRounds = parseInt(process.env.SALT_ROUNDS, 10);
       const hashedPassword = await bcrypt.hash(password, saltRounds);
 
       const newUser = new User({
@@ -96,6 +96,7 @@ passport.use(new LocalStrategy(
       passwordField: 'password',
     },
     async (username, password, done) => {
+      username = username.toLowerCase()
       try {
         const user = await User.findOne({ username });
   
