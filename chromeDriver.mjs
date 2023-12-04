@@ -95,7 +95,27 @@ async function generateRandomName() {
       randomName += alphabet.charAt(randomIndex);
     }
     return randomName;
-  }
+}
+
+async function navigateToFeedbackPage(driver, duration) {
+  await new Promise(resolve => setTimeout(resolve, duration));
+  await driver.findElement(By.id('feedback')).click();
+  console.log('Navigated to feedback page.');
+}
+
+async function fillAndSubmitFeedbackForm(driver, feedback, duration) {
+  await new Promise(resolve => setTimeout(resolve, duration));
+  await driver.findElement(By.name('content')).sendKeys(feedback);
+  await new Promise(resolve => setTimeout(resolve, duration / 2));
+  await driver.findElement(By.className('btn btn1')).click();
+  console.log('Feedback form submitted.');
+}
+
+async function logout(driver, duration) {
+  await new Promise(resolve => setTimeout(resolve, duration));
+  await driver.findElement(By.id('logout')).click();
+  console.log('Logged out.');
+}
   
 async function runScript() {
     const driver = await new Builder().forBrowser('chrome').build();
@@ -109,13 +129,17 @@ async function runScript() {
         await fillAndSubmitLoginForm(driver, 'User_'+name, 'Testpassword123', globalDuration);
         await navigateToAddConfessionTab(driver, globalDuration);
         await fillAndSubmitConfessionForm(driver, 'Hello World', globalDuration);
-        await likeConfession(driver, globalDuration);
-        await dislikeConfession(driver, globalDuration);
-        await likeConfession(driver, globalDuration);
+        // await likeConfession(driver, globalDuration);
+        // await dislikeConfession(driver, globalDuration);
+        // await likeConfession(driver, globalDuration);
         await navigateToHomePage(driver, globalDuration);
         await navigateToAddDiaryTab(driver, globalDuration);
-        await fillAndSubmitConfessionForm(driver, 'Hello Diary', globalDuration);
-        await navigateToHomePage(driver, globalDuration*3);
+        await fillAndSubmitDiaryForm(driver, 'Hello Diary', globalDuration);
+        await navigateToHomePage(driver, globalDuration);
+        await navigateToFeedbackPage(driver, globalDuration);
+        await fillAndSubmitFeedbackForm(driver, 'Great website!', globalDuration);
+        await navigateToHomePage(driver, globalDuration);
+        await logout(driver, globalDuration);
 
         console.log('\nPress Ctrl+C to exit the script.');
         await new Promise(() => {});

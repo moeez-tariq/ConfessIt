@@ -199,38 +199,38 @@ app.post('/addDay', isAuthenticated, async (req, res) => {
     res.redirect('/diary');
 });
 
-app.post('/likeConfession/:id', isAuthenticated, async (req, res) => {
-  try {
-    const userId = req.user.id;
-    const confessionId = req.params.id;
+// app.post('/likeConfession/:id', isAuthenticated, async (req, res) => {
+//   try {
+//     const userId = req.user.id;
+//     const confessionId = req.params.id;
 
-    const user = await User.findById(userId);
-    const confessionManager = new ConfessionManager('user');
-    const liked = await confessionManager.likeConfession(user, confessionId);
+//     const user = await User.findById(userId);
+//     const confessionManager = new ConfessionManager('user');
+//     const liked = await confessionManager.likeConfession(user, confessionId);
 
-    return res.redirect('/confessions');
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
-  }
-});
+//     return res.redirect('/confessions');
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
 
 
-app.post('/dislikeConfession/:id', isAuthenticated, async (req, res) => {
-  try {
-    const userId = req.user.id;
-    const confessionId = req.params.id;
+// app.post('/dislikeConfession/:id', isAuthenticated, async (req, res) => {
+//   try {
+//     const userId = req.user.id;
+//     const confessionId = req.params.id;
 
-    const user = await User.findById(userId);
-    const confessionManager = new ConfessionManager('user');
-    const disliked = await confessionManager.dislikeConfession(user, confessionId);
-    
-    return res.redirect('/confessions');
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
-  }
-});
+//     const user = await User.findById(userId);
+//     const confessionManager = new ConfessionManager('user');
+//     const disliked = await confessionManager.dislikeConfession(user, confessionId);
+
+//     return res.redirect('/confessions');
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
 
 app.get('/feedback', isAuthenticated, async (req, res) => {
   try {

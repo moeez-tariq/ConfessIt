@@ -25,18 +25,18 @@ const UserSchema = new mongoose.Schema({
       ref: 'Confession',
     },
   ],
-  likedConfessions: [
-    {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Confession',
-    },
-  ],
-  dislikedConfessions: [
-    {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Confession',
-    },
-  ],
+  // likedConfessions: [
+  //   {
+  //       type: mongoose.Schema.Types.ObjectId,
+  //       ref: 'Confession',
+  //   },
+  // ],
+  // dislikedConfessions: [
+  //   {
+  //       type: mongoose.Schema.Types.ObjectId,
+  //       ref: 'Confession',
+  //   },
+  // ],
   feedbacks: [
     {
       type: mongoose.Schema.Types.ObjectId,

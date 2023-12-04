@@ -57,8 +57,6 @@ Each confession includes:
   user: // a reference to the User document,
   content: "I did something I'm not proud of...",
   timestamp: // timestamp,
-  likes: // number of users who liked the confession,
-  dislikes: // number of users who disliked the confession
 }
 ```
 ## [Link to Commented First Draft Schema](db.mjs) 
@@ -111,13 +109,11 @@ Note: This page/form is optional and will be implemented if time permits
 2. As a registered user, I can log in to my account.
 3. As a user, I can submit a confession, including the content of my confession.
 4. As a user, I can view confessions posted by others in the Confession Feed.
-5. As a user, I can like a confession to show support for the author.
-6. As a user, I can dislike a confession to express my disapproval.
-7. As a user, I can view the details of a confession, including its content, the number of likes, and dislikes.
-8. As a user, I can add personal diary entries to my Diary.
-9. As a user, I can view my personal diary entries in the Diary section.
-10. As a user, I can maintain my anonymity while using the platform, ensuring my identity remains confidential.
-11. As a user, I can provide feedback to the developers of the platform. (Optional)
+5. As a user, I can view the details of a confession, including its content, the number of likes, and dislikes.
+6. As a user, I can add personal diary entries to my Diary.
+7. As a user, I can view my personal diary entries in the Diary section.
+8. As a user, I can maintain my anonymity while using the platform, ensuring my identity remains confidential.
+9. As a user, I can provide feedback to the developers of the platform
 
 ## Research Topics
 
