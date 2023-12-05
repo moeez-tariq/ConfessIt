@@ -3,7 +3,8 @@ import { Builder, By, Key } from 'selenium-webdriver';
 const globalDuration = 2000;
 
 async function openInitialPage(driver) {
-  await driver.get('http://localhost:3000');
+  // await driver.get('http://localhost:3000');
+  await driver.get('http://linserv1.cims.nyu.edu:23149/')
   console.log('Web page opened.');
 }
 
@@ -20,6 +21,8 @@ async function fillAndSubmitSignupForm(driver, username, name, password, duratio
   await driver.findElement(By.name('name')).sendKeys(name);
   await new Promise(resolve => setTimeout(resolve, duration / 2));
   await driver.findElement(By.name('password')).sendKeys(password);
+  await new Promise(resolve => setTimeout(resolve, duration / 2));
+  await driver.findElement(By.name('retypePassword')).sendKeys(password);
   await new Promise(resolve => setTimeout(resolve, duration / 2));
   console.log(`Form filled. Waiting for ${duration / 1000} seconds...`);
   await new Promise(resolve => setTimeout(resolve, duration));
@@ -128,16 +131,16 @@ async function runScript() {
         await fillAndSubmitSignupForm(driver, 'User_'+name, name, 'Testpassword123', globalDuration);
         await fillAndSubmitLoginForm(driver, 'User_'+name, 'Testpassword123', globalDuration);
         await navigateToAddConfessionTab(driver, globalDuration);
-        await fillAndSubmitConfessionForm(driver, 'Hello World', globalDuration);
+        await fillAndSubmitConfessionForm(driver, 'I talk to my plants in hushed tones every night, reassuring them that they are the best photosynthesizers in the neighborhood. My dream is to organize a plant talent show!', globalDuration);
         // await likeConfession(driver, globalDuration);
         // await dislikeConfession(driver, globalDuration);
         // await likeConfession(driver, globalDuration);
         await navigateToHomePage(driver, globalDuration);
         await navigateToAddDiaryTab(driver, globalDuration);
-        await fillAndSubmitDiaryForm(driver, 'Hello Diary', globalDuration);
+        await fillAndSubmitDiaryForm(driver, 'I had a very weird day!', globalDuration);
         await navigateToHomePage(driver, globalDuration);
         await navigateToFeedbackPage(driver, globalDuration);
-        await fillAndSubmitFeedbackForm(driver, 'Great website!', globalDuration);
+        await fillAndSubmitFeedbackForm(driver, 'I dont like the website', globalDuration);
         await navigateToHomePage(driver, globalDuration);
         await logout(driver, globalDuration);
 
