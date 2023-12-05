@@ -44,7 +44,7 @@ app.get('/signup', (req, res) => {
 });
   
 app.post('/signup', async (req, res) => {
-  let { username, name, password } = req.body;
+  let { username, name, password, retypePassword } = req.body;
   username = username.toLowerCase();
   const MIN_PASSWORD_LENGTH = 8;
   const hasUpperCase = /[A-Z]/.test(password);
@@ -58,7 +58,11 @@ app.post('/signup', async (req, res) => {
 
       if (password.length < MIN_PASSWORD_LENGTH || !hasUpperCase || !hasNumber) {
         return res.render('signup', { error: 'Invalid Password Format. Password must be at least 8 characters long and must contain at least 1 uppercase and 1 digit.' });
-    }
+      }
+
+      if (password !== retypePassword) {
+        return res.render('signup', { error: 'Passwords do not match. Please try again!' });
+      }
 
       const saltRounds = parseInt(process.env.SALT_ROUNDS, 10);
       const hashedPassword = await bcrypt.hash(password, saltRounds);
