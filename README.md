@@ -62,7 +62,6 @@ Each confession includes:
 ## [Link to Commented First Draft Schema](db.mjs) 
 
 ## Wireframes
-### Note: For all wireframes after login form, the header and footer will be the same as the home page (not shown in the wireframes excluding homepage)
 / - main page when user is not logged in
 
 ![list create](documentation/1.png)
