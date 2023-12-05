@@ -65,43 +65,43 @@ Each confession includes:
 ### Note: For all wireframes after login form, the header and footer will be the same as the home page (not shown in the wireframes excluding homepage)
 / - main page when user is not logged in
 
-![list create](documentation/IMG_7054.png)
-
-/signin - page for when user is trying to sign in
-
-![list](documentation/IMG_7055.png)
+![list create](documentation/1.png)
 
 /signup - page for when user is trying to sign up
 
-![list](documentation/IMG_7056.png)
+![list](documentation/2.png)
+
+/signin - page for when user is trying to sign in
+
+![list](documentation/3.png)
 
 /home - page for home when user is signed in
 
-![list](documentation/IMG_7057.png)
+![list](documentation/4.png)
 
 /confessions - page for all the public confessions
 
-![list](documentation/IMG_7059.png)
+![list](documentation/5.png)
 
 /addConfession - page for when user is trying to add a confessions
 
-![list](documentation/IMG_7058.png)
+![list](documentation/6.png)
 
 /diary - page for when user is trying to access their diary
 
-![list](documentation/IMG_7060.png)
+![list](documentation/7.png)
 
 /addToDiary - page for when user is trying to add another log to their diary
 
-![list](documentation/IMG_7061.png)
+![list](documentation/8.png)
 
-Note: This page/form is optional and will be implemented if time permits
 /feedback - page for when user is giving feedback
 
-![list](documentation/IMG_7063.png)
+![list](documentation/9.png)
 
 ## Site map
-## [Link to Site Map](documentation/site_map.png)
+## [Link to Site Map](documentation/site_map.png) 
+All implemented except for report a confession page (in progress)
 
 ## User Stories or Use Cases
 
