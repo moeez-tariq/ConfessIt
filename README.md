@@ -98,10 +98,6 @@ Each confession includes:
 
 ![list](documentation/9.png)
 
-## Site map
-## [Link to Site Map](documentation/site_map.png) 
-All implemented except for report a confession page (in progress)
-
 ## User Stories or Use Cases
 
 1. As an unregistered user, I can register for an account with a unique username and a secure password.
@@ -116,23 +112,18 @@ All implemented except for report a confession page (in progress)
 
 ## Research Topics
 
-* (2 points) Bootstrap for UI Styling
+* Bootstrap for UI Styling
     * Bootstrap is a front-end framework for designing responsive and visually appealing user interfaces.
     * Integrating Bootstrap will enhance the UI styling of the application.
-* (3 points) Configuration Management with dotenv
-  * dotenv is a Node.js module for managing environment variables and configuration settings.
-  * It will help me simplify the management of environment-specific configuration settings.
-* (5 points) Automated Functional Testing
-  * Selenium is a tools for automated functional testing.
-  * It will help me automate functional testing which will ensure application functionality across different scenarios.
-* (3 points) Integrate user authentication
-  * Passport.js is a popular authentication library for Node.js.
-  * It provides a secure and flexible way to implement user authentication.
-
-13 points total out of 10 required points
-
-
-## [Link to Initial Main Project File](app.mjs) 
+* Configuration Management with dotenv
+    * dotenv is a Node.js module for managing environment variables and configuration settings.
+    * It will help me simplify the management of environment-specific configuration settings.
+* Automated Functional Testing
+    * Selenium is a tools for automated functional testing.
+    * It will help me automate functional testing which will ensure application functionality across different scenarios.
+* Integrate user authentication
+    * Passport.js is a popular authentication library for Node.js.
+    * It provides a secure and flexible way to implement user authentication.
 
 ## Annotations / References Used
 
